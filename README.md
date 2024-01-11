@@ -1,4 +1,6 @@
-# React + TypeScript + Vite
+# Rumit UI
+![image](https://github.com/Coderoom-Labs/rumit-ui/assets/16800513/42a67b38-b416-4fef-ac77-32e5da05ee85)
+
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
