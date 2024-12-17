@@ -1,10 +1,7 @@
-export interface MenuToken {
+export interface ListToken {
   fontWeight: string;
   fontSize: number;
   hoverBgColor: string;
-  hoverTextColor: string;
-  activeBgColor: string;
-  activeTextColor: string;
   textColor: string;
   headerTextColor: string;
 }

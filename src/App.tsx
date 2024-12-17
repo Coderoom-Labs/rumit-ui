@@ -1,11 +1,16 @@
 import "./App.css";
 import rumit_icon from "./assets/rumit-icon.svg";
 import radial_bg from "./assets/radial-bg.png";
-import { Button, Layout, Menu } from "./rumit";
+
+import { Layout, Menu } from "./rumit";
 import { DesignToken } from "./tokens/base-token";
 import ThemeProvider from "./utils/theme-provider";
+import { RouterProvider } from "react-router-dom";
+import MainRoutes from "./pages";
 
 function App() {
+  const path = window.location.pathname;
+
   const token: DesignToken = {
     token: {
       fontSize: 14,
@@ -15,12 +20,16 @@ function App() {
   return (
     <ThemeProvider token={token}>
       <Layout
-        style={{
-          backgroundImage: `url(${radial_bg})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-        }}
+        style={
+          path === "/"
+            ? {
+                backgroundImage: `url(${radial_bg})`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }
+            : { background: "#f8f8f8" }
+        }
       >
         <Layout.Header
           style={{ background: "transparent", boxShadow: "none", border: 0 }}
@@ -42,9 +51,16 @@ function App() {
                 items={[
                   {
                     label: "Home",
+                    onClick: () => {
+                      window.location.href = "/";
+                    },
                   },
                   {
                     label: "Components",
+                    onClick: () => {
+                      console.log("clicked");
+                      window.location.href = "/components";
+                    },
                   },
                   {
                     label: "Docs",
@@ -58,38 +74,7 @@ function App() {
           }
         />
         <Layout.Content>
-          <div
-            style={{
-              textAlign: "center",
-              height: 500,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
-          >
-            <div>
-              <br />
-              <img src={rumit_icon} alt="rumit-icon" width={150} />
-              <div style={{ fontSize: 48, fontWeight: 800 }}>
-                Premium & Enterprise
-                <br />
-                UI Components for React.
-                <br />
-              </div>
-              <div style={{ marginTop: 20, color: "#8e8e8e" }}>
-                <span style={{ fontSize: 16, fontWeight: 400 }}>
-                  Made with love by Rumit. Imagine that you can create your own
-                  design system,
-                  <br /> or just use the one that we have created for you.
-                  <br />
-                </span>
-                <br />
-              </div>
-              <Button type="primary" size="large">
-                Get Started
-              </Button>
-            </div>
-          </div>
+          <RouterProvider router={MainRoutes()} />
         </Layout.Content>
       </Layout>
     </ThemeProvider>

@@ -1,14 +1,11 @@
 import { BaseToken } from "../interfaces/base-token";
-import { MenuToken } from "../interfaces/menu/menu-token";
+import { ListToken } from "../interfaces/list/list-token";
 
-export const menuToken = (token: BaseToken): MenuToken => {
+export const listToken = (token: BaseToken): ListToken => {
   return {
     fontWeight: "500",
     fontSize: 14,
     hoverBgColor: token.secondaryColor,
-    hoverTextColor: token.primaryColor,
-    activeBgColor: token.primaryColor,
-    activeTextColor: "#fff",
     textColor: token.textColor,
     headerTextColor: token.texteSecondaryColor,
   };

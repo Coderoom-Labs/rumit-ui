@@ -1,6 +1,7 @@
 import { buttonToken } from "./button/button-token";
 import { BaseToken } from "./interfaces/base-token";
 import { ComponentToken } from "./interfaces/component-token";
+import { listToken } from "./list/list-token";
 import { menuToken } from "./menu/menu-token";
 
 export interface DesignToken {
@@ -10,7 +11,7 @@ export interface DesignToken {
 
 export const _baseToken: BaseToken = {
   backgroundColor: "#fff",
-  borderColor: "#E6E6E6",
+  borderColor: "#f1f1f1",
   borderRadius: 6,
   borderWidth: 1,
   primaryColor: "#6F49DB",
@@ -34,6 +35,7 @@ export const token = (): DesignToken => {
     components: {
       button: buttonToken(_baseToken),
       menu: menuToken(_baseToken),
+      list: listToken(_baseToken),
     },
   };
 };

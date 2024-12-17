@@ -15,7 +15,7 @@ export interface MenuItem {
   onClick?: () => void;
   items?: MenuItem[];
   active?: boolean;
-  type?: "divider" | "group";
+  type?: "divider" | "header";
   disabled?: boolean;
 }
 
@@ -30,13 +30,40 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     return item.active ? classes.activeMenuItem : "";
   };
 
+  const getDefaultMode = () => {
+    if (props.mode === "vertical") return classes.verticalMenu;
+    return classes.horizontalMenu;
+  };
+
   return (
-    <div ref={ref} className={classes.horizontalMenu}>
-      {items.map((item, index) => (
-        <div key={index} className={`${classes.menuItem} ${isActive(item)}`}>
-          {item.label}
-        </div>
-      ))}
+    <div ref={ref} className={getDefaultMode()}>
+      {items.map((item, index) => {
+        if (item.type === "divider") {
+          return (
+            <div key={index} className={classes.menuItemHeader}>
+              {item.label}
+            </div>
+          );
+        }
+
+        if (item.type === "header") {
+          return (
+            <div key={index} className={classes.menuItemHeader}>
+              {item.label}
+            </div>
+          );
+        }
+
+        return (
+          <div
+            key={index}
+            className={`${classes.menuItem} ${isActive(item)}`}
+            onClick={item.onClick}
+          >
+            {item.label}
+          </div>
+        );
+      })}
     </div>
   );
 });

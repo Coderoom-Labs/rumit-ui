@@ -15,6 +15,7 @@ export const menuStyle = (context: DesignToken, token: DesignToken) => {
     verticalMenu: {
       display: "flex",
       flexDirection: "column",
+      gap: 4,
     },
     menuItem: {
       display: "flex",
@@ -27,7 +28,9 @@ export const menuStyle = (context: DesignToken, token: DesignToken) => {
         backgroundColor:
           context.components?.menu?.hoverBgColor ||
           token.components?.menu?.hoverBgColor,
-        color: context.components?.menu?.hoverTextColor || "#fff",
+        color:
+          context.components?.menu?.hoverTextColor ||
+          token.components?.menu?.hoverTextColor,
       },
     },
     activeMenuItem: {
@@ -35,6 +38,15 @@ export const menuStyle = (context: DesignToken, token: DesignToken) => {
         context.components?.menu?.activeBgColor ||
         token.components?.menu?.activeBgColor,
       color: context.components?.menu?.activeTextColor || "#fff",
+    },
+    menuItemHeader: {
+      color: token.components?.menu?.headerTextColor || "#fff",
+      padding: "10px 15px",
+      "&:not(:first-child)": {
+        marginTop: 10,
+      },
+
+      fontSize: 12,
     },
   });
 
